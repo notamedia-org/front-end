@@ -30,10 +30,10 @@ function Navbar() {
       </Toolbar>
       <List>
         {[
-          { text: 'Соревнования', href: '/competitions'},
-          { text: 'Виды соревнований', href: '/competitions/types'},
-          { text: 'Нормативы', href: '/standards'},
-          { text: 'Справка', href: '/help'},
+          { text: 'Соревнования', href: '/front-end/competitions'},
+          { text: 'Виды соревнований', href: '/front-end/competitions/types'},
+          { text: 'Нормативы', href: '/front-end/standards'},
+          { text: 'Справка', href: '/front-end/help'},
         ].map((params) => (
           <ListItem key={params.text} disablePadding>
             <ListItemButton href={params.href}>
@@ -68,8 +68,8 @@ function Navbar() {
             <Typography variant='h6' sx={{ color: textColor }}>ФСПМО</Typography>
           </a>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}></Typography>
-          <Button href='/sign-up' sx={{ color: textColor }}>Регистрация</Button>
-          <Button href='/sign-in' sx={{ color: textColor }}>Вход</Button>
+          <Button href='/front-end/sign-up' sx={{ color: textColor }}>Регистрация</Button>
+          <Button href='/front-end/sign-in' sx={{ color: textColor }}>Вход</Button>
         </Toolbar>
       </AppBar>
     </div>
