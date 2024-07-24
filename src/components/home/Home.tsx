@@ -7,7 +7,7 @@ function Home() {
     <div>
       <Container maxWidth="lg">
         <Box sx={{
-          height: '93vh',
+          height: '92vh',
           position: 'relative',
         }}>
           <div style={{
