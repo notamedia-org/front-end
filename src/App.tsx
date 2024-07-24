@@ -8,7 +8,7 @@ import SignInPage from './pages/SignInPage';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='front-end'>
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<HomePage />} />
