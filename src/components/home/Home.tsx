@@ -1,12 +1,10 @@
 import React from 'react';
-import Navbar from '../navbar/Navbar';
 import { Container, Box } from '@mui/material';
 import image from '../../assets/main-logo.png';
 
 function Home() {
   return (
     <div>
-      <Navbar></Navbar>
       <Container maxWidth="lg">
         <Box sx={{
           height: '93vh',
@@ -14,8 +12,8 @@ function Home() {
         }}>
           <div style={{
             backgroundColor: '#ffffff',
-            width: 1220,
-            height: 300,
+            width: '60vw',
+            height: '18vw',
             position: 'absolute',
             top: '50%',
             left: '50%',
@@ -26,7 +24,7 @@ function Home() {
             alignItems: 'center',
           }}>
             <img src={image} alt='main logo' style={{
-              width: 1150,
+              width: '56vw',
             }}></img>
           </div>
         </Box>

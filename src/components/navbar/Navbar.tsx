@@ -19,12 +19,25 @@ function Navbar() {
   };
 
   const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+    <Box sx={{ width: 280 }} onClick={toggleDrawer(false)}>
+      <Toolbar>
+        <a href='/'>
+          <img src={logo} alt='logo' style={{ width: '35px'}}></img>
+        </a>
+        <a href='/'>
+          <Typography variant='h6' sx={{ color: textColor }}>ФСПМО</Typography>
+        </a>
+      </Toolbar>
       <List>
-        {['Что-то первое', 'Что-то второе', 'Что-то третье', 'Что-то четвертое'].map((text) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemText primary={text} color={textColor}/>
+        {[
+          { text: 'Соревнования', href: '/competitions'},
+          { text: 'Виды соревнований', href: '/competitions/types'},
+          { text: 'Нормативы', href: '/standards'},
+          { text: 'Справка', href: '/help'},
+        ].map((params) => (
+          <ListItem key={params.text} disablePadding>
+            <ListItemButton href={params.href}>
+              <ListItemText primary={params.text} color={textColor} primaryTypographyProps={{ variant: 'h5' }} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -34,7 +47,7 @@ function Navbar() {
 
   return (
     <div>
-      <Drawer open={open} onClose={toggleDrawer(false)}>
+      <Drawer open={open} onClose={toggleDrawer(false)} sx={{ marginTop: 0 }}>
         {DrawerList}
       </Drawer>
       <AppBar position="static" sx={{ background: '#FAFBFB' }}>
@@ -48,11 +61,15 @@ function Navbar() {
           >
             <MenuIcon />
           </IconButton>
-          <img src={logo} alt='logo' style={{ width: '35px'}}></img>
-          <Typography variant='h6' sx={{ color: textColor }}>ФСПМО</Typography>
+          <a href='/'>
+            <img src={logo} alt='logo' style={{ width: '35px'}}></img>
+          </a>
+          <a href='/'>
+            <Typography variant='h6' sx={{ color: textColor }}>ФСПМО</Typography>
+          </a>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}></Typography>
-          <Button  sx={{ color: textColor }}>Регистрация</Button>
-          <Button  sx={{ color: textColor }}>Вход</Button>
+          <Button href='/sign-up' sx={{ color: textColor }}>Регистрация</Button>
+          <Button href='/sign-in' sx={{ color: textColor }}>Вход</Button>
         </Toolbar>
       </AppBar>
     </div>
