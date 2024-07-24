@@ -21,10 +21,10 @@ function Navbar() {
   const DrawerList = (
     <Box sx={{ width: 280 }} onClick={toggleDrawer(false)}>
       <Toolbar>
-        <a href='/'>
+        <a href='/front-end'>
           <img src={logo} alt='logo' style={{ width: '35px'}}></img>
         </a>
-        <a href='/'>
+        <a href='/front-end'>
           <Typography variant='h6' sx={{ color: textColor }}>ФСПМО</Typography>
         </a>
       </Toolbar>
@@ -61,10 +61,10 @@ function Navbar() {
           >
             <MenuIcon />
           </IconButton>
-          <a href='/'>
+          <a href='/front-end'>
             <img src={logo} alt='logo' style={{ width: '35px'}}></img>
           </a>
-          <a href='/'>
+          <a href='/front-end/'>
             <Typography variant='h6' sx={{ color: textColor }}>ФСПМО</Typography>
           </a>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}></Typography>
