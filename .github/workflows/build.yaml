@@ -1,0 +1,65 @@
+name: build project
+
+on:
+  push:
+    branches: ["master"]
+  workflow_dispatch:
+    inputs:
+      env:
+        description: provide certain .env content
+        required: true
+        
+jobs:
+  checkout:
+    runs-on: self-hosted
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+        
+  dependencies:
+    runs-on: self-hosted
+    needs: checkout
+    env:
+      ENV_FILE: ${{ github.event.inputs.env }}
+    steps:
+      - name: process env
+        run: |
+         if [[ ! -z "$ENV_FILE" ]];
+           then
+             echo "$ENV_FILE" | tr ' ' '\n' > .env
+         fi
+          
+  install-docker:
+    runs-on: self-hosted
+    needs: dependencies
+    steps:
+      - name: check if docker installed
+        id: check_docker
+        run: |
+            if ! command -v docker &> /dev/null
+            then
+              sudo apt update
+              sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+              curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+              sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+              sudo apt install -y docker-ce
+              sudo systemctl restart docker.service
+            fi
+            
+  prepare-env:
+    runs-on: self-hosted
+    needs: install-docker
+    steps:
+       - name: down existing containers
+         run: docker compose down
+       - name: prune all the volumes
+         run: docker volume prune -a -f
+       - name: prune system to esxape old images
+         run: docker system prune -a -f
+         
+  build-docker:
+    runs-on: self-hosted
+    needs: prepare-env
+    steps:
+      - name: run docker build
+        run: docker compose up --build -d
